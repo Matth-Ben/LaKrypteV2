@@ -1,3 +1,4 @@
+languages/*
 uploads/*
 !uploads/.gitkeep
 ai1wm-backups/
