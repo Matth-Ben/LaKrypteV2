@@ -12,5 +12,12 @@ class Block extends Controller {
     //     ];
     // }
 
+    public static function coverPrimary($data) {
+        return [
+            'title' => Element::title($data),
+            'image' => Element::image($data['image'], '1920px')
+        ];
+    }
+
     // generated function here
 }
