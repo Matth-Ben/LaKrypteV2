@@ -58,8 +58,8 @@ class App extends Controller
     $options = get_fields('options');
 
     return [
-      'gtm' => $options['google_tag_manager'],
-      'analytics' => $options['google_analytics_key']
+      'gtm' => $options['google_tag_manager'] ?? 'default value',
+      'analytics' => $options['google_analytics_key'] ?? 'default value'
     ];
   }
 
