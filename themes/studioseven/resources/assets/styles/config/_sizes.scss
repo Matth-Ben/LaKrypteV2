@@ -1,0 +1,11 @@
+@use "breakpoints" as *;
+
+@mixin f110 {
+  font-size: 10vw;
+  line-height: 12vw;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 110px;
+    line-height: 130px;
+  }
+}
