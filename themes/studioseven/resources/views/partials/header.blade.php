@@ -1,5 +1,3 @@
 <header class="header">
-  <div class="container-fluid">
-    <div class="row"></div>
-  </div>
+  @include('components/header-main', ['data' => $GLOBALS['navigation']['header']])
 </header>
