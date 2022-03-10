@@ -9,7 +9,7 @@
   @include media-breakpoint-up(lg) { overflow: initial; }
 
   &__topNav {
-    position: relative;
+    position: sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -119,6 +119,7 @@
   }
 
   &__burger {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,10 +128,7 @@
     height: 40px;
     border-radius: 50%;
     margin-right: fake-offset(1);
-
-    @include media-breakpoint-up(lg) {
-      display: none;
-    }
+    transform: translateY(-100%);
 
     > div:not(.cross-line) {
       width: 35%;

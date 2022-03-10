@@ -1,57 +1,116 @@
+import store from './store'
+import gsap from 'gsap'
+
 export default class Menu {
   constructor() {
-    this.menuOpen = false
-    this.isAnimating = false
+    this.isHidden = false
 
-    this.bindMethods()
+    // this.bindMethods()
     this.getElems()
-    this.addEvents()
+    this.createTimeline()
   }
 
   bindMethods() {
-    this.toggle = this.toggle.bind(this)
   }
 
-  getElems() {}
-
-  addEvents() {
-    this.toggler && this.toggler.addEventListener('click', this.toggle)
+  getElems() {
+    this.header = document.querySelector('.header')
+    this.burger = document.querySelector('.h-main__burger')
+    this.nav = document.querySelector('.h-main__mainNav')
   }
 
-  /**
-  * Toggle Menu to open or close it
-  * @returns {any} null
-  */
-  toggle() {
-    if (this.isAnimating) return
+  createTimeline() {
+    this.hideTl = gsap.timeline({ paused: true })
+    this.showMn = gsap.timeline({ paused: true })
 
-    if (this.menuOpen) this.close()
-    else this.open()
+    this.hideTl
+      .to(this.burger, {
+        y: 100,
+        ease: 'power2.inOut',
+        duration: 0.6
+      }, 0)
+      .to(this.burger, {
+        y: -100,
+        ease: 'power2.inOut',
+        duration: 0.6
+      }, 0)
+
+    this.showMn
+      .to(this.nav, {
+        y: -100,
+        ease: 'power2.inOut',
+        duration: 0.6
+      }, 0)
+      .to(this.nav, {
+        y: 0,
+        ease: 'power2.out',
+        duration: 0.6
+      }, 0)
+
+    this.showTl = gsap.timeline({ paused: true })
+    this.hideMn = gsap.timeline({ paused: true })
+
+    this.showTl
+      .to(this.burger, {
+        y: -100,
+        ease: 'power2.inOut',
+        duration: 0.6
+      }, 0)
+      .to(this.burger, {
+        y: 100,
+        ease: 'power2.out',
+        duration: 0.6
+      }, 0)
+
+    this.hideMn
+      .to(this.nav, {
+        y: 0,
+        ease: 'power2.out',
+        duration: 0.6
+      }, 0)
+      .to(this.nav, {
+        y: -500,
+        ease: 'power2.inOut',
+        duration: 0.6,
+        stagger: -0.05
+      }, 0)
   }
 
-  /**
-  * Open Menu
-  * @returns {Promise} return Promise when open animation end
-  */
-  open() {
-    return new Promise((resolve) => {
-      this.menuOpen = true
-      resolve()
-    })
+  hide() {
+    this.isHidden = true
+    this.showTl.pause()
+    this.hideTl.invalidate()
+    this.hideTl.restart()
   }
 
-  /**
-  * Close Menu
-  * @returns {Promise} return Promise when close animation end
-  */
-  close() {
-    return new Promise((resolve) => {
-      this.menuOpen = false
-      resolve()
-    })
+  show() {
+    this.isHidden = false
+    this.hideTl.pause()
+    this.showTl.invalidate()
+    this.showTl.restart()
   }
 
-  resize() {}
+  hideMain() {
+    this.showMn.pause()
+    this.hideMn.invalidate()
+    this.hideMn.restart()
+  }
 
-  scroll() {}
+  showMain() {
+    this.hideMn.pause()
+    this.showMn.invalidate()
+    this.showMn.restart()
+  }
+
+  scroll() {
+    if (window.scrollY > 100 && this.isHidden) {
+      this.show()
+      this.hideMain()
+    }
+      
+    if (window.scrollY <= 100 && !this.isHidden) {
+      this.hide()
+      this.showMain()
+    }
+  }
 }
