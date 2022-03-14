@@ -21,6 +21,15 @@
             </a>
           @endforeach
         </div>
+        <div class="h-main__mainNav-mobile">
+          <div class="h-main__mainNav-mobile__content">
+            @foreach ($data as $item)
+              <a class="h-main__item" href='{{$item['url']}}' @isset($item['target']) targer='_blank' rel='noopener' @endisset>
+                <span class="h-main__item-title">{{$item['title']}}</span>
+              </a>
+            @endforeach
+          </div>
+        </div>
       </div>
     </div>
   </div>
