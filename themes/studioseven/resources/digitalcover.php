@@ -141,3 +141,14 @@ function wpb_custom_new_menu() {
     register_nav_menu('footer_navigation',__( 'Footer' ));
 }
 add_action( 'init', 'wpb_custom_new_menu' );
+
+function toCamelCase($string)
+{
+  return preg_replace_callback(
+    '/[-_](.)/',
+    function ($matches) {
+      return strtoupper($matches[1]);
+    },
+    $string
+  );
+}
