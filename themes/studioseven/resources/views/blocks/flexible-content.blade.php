@@ -14,6 +14,11 @@
 
 <section class="b-flexible-content">
     <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-20 offset-md-2">
+          @include('elements/title', ['data' => $data['title']])
+        </div>
+      </div>
         <div class="row">
             @foreach ($data['components'] as $component)
                 @php

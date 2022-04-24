@@ -33,7 +33,11 @@ class Block extends Controller {
     }
 
     return [
-      'components' => $components
+      'components' => $components,
+      'title' => Element::title($title = [
+        'title' => $data['title_title'],
+        'hn' => $data['title_hn']
+      ])
     ];
   }  
 
