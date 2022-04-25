@@ -9,8 +9,18 @@
     line-height: 130px;
   }
 }
+ 
+@mixin f75 {
+  font-size: clamp(35px, 6vw, 75px);
+  line-height: 75px;
+}
+
+@mixin f28 {
+  font-size: clamp(21px, 1.8vw, 28px);
+  line-height: clamp(32px, 2.3vw, 42px);
+}
 
 @mixin f24 {
   font-size: 24px;
-  line-height: 28px;
+  line-height: 36px;
 }

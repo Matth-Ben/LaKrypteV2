@@ -1,6 +1,16 @@
+@use "../config" as *;
+
 // body {}
 // h1 {}
-// h2 {}
+
+h2 {
+  margin-bottom: 25px;
+
+  @include f75;
+} 
+
 // h3 {}
 // h4 {}
 // h5 {}
+
+p { @include f28; }  
