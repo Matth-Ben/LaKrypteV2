@@ -1,6 +1,8 @@
 <div class="c-classic-content @if (!isset($col)) {{ 'col' }} @endif">
   @if (!isset($col))
-      @include('elements/title', ['data' => $data['titles']])
+    @if (!empty($data['titles']['title']))
+        @include('elements/title', ['data' => $data['titles']])        
+    @endif
       @if ($data['text'])
           <div class="c-classic-content__text">{!! $data['text'] !!}</div>
       @endif
@@ -15,7 +17,7 @@
               </div>
               @if ($data['link'] || $data['text'])
                   <div class="col-md-8 offset-md-3">
-                      @if ($data['text'])
+                      @if (!empty($data['text']))
                           <div class="c-classic-content__text">{!! $data['text'] !!}</div>
                       @endif
                       @if ($data['link'])
